@@ -54,9 +54,10 @@ if __name__ == "__main__":
     import argparse
 
     parser = argparse.ArgumentParser(
-        description="Compute the weighted average of squares (weights = 1)."
+        description="Compute the weighted average of squares."
     )
 
+    # numbers 参数（必填）
     parser.add_argument(
         "numbers",
         nargs="+",
@@ -64,8 +65,17 @@ if __name__ == "__main__":
         help="Sequence of numbers"
     )
 
+    # weights 参数（可选）
+    parser.add_argument(
+        "--weights",
+        nargs="+",
+        type=float,
+        help="Optional list of weights matching the numbers"
+    )
+
     args = parser.parse_args()
 
-    result = average_of_squares(args.numbers, list_of_weights=None)
+    # 如果用户提供了 weights，就使用它；否则为 None
+    result = average_of_squares(args.numbers, list_of_weights=args.weights)
 
     print(result)
