@@ -51,12 +51,21 @@ def convert_numbers(list_of_strings):
 
 
 if __name__ == "__main__":
-    numbers_strings = ["1","2","4"]
-    weight_strings = ["1","1","1"]        
-    
-    numbers = convert_numbers(numbers_strings)
-    weights = convert_numbers(weight_strings)
-    
-    result = average_of_squares(numbers, weights)
-    
+    import argparse
+
+    parser = argparse.ArgumentParser(
+        description="Compute the weighted average of squares (weights = 1)."
+    )
+
+    parser.add_argument(
+        "numbers",
+        nargs="+",
+        type=float,
+        help="Sequence of numbers"
+    )
+
+    args = parser.parse_args()
+
+    result = average_of_squares(args.numbers, list_of_weights=None)
+
     print(result)
